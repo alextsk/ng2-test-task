@@ -26,9 +26,11 @@ import {DataService} from './get_data.service';
           <td> {{countStudentsByFac(faculty.id, "female")}} </td>
           <td> {{avgAge(faculty.id)}} </td>
           <td>
-            <a [routerLink]="faculty.id" >edit</a>
+            <a [routerLink]="faculty.id" >edit</a></td>
+            <td>
             <button *ngIf="!countStudentsByFac(faculty.id)" 
                     (click)="deleteFaculty(faculty.id)"
+                    class="btn btn-sm btn-danger"
                     > Delete
             </button>
           </td>
@@ -36,7 +38,7 @@ import {DataService} from './get_data.service';
       </tbody>
     </table>
 
-    <button [routerLink]="['create']"> Create New Faculty</button>
+    <button class="btn btn-success"[routerLink]="['create']"> Create New Faculty</button>
   `
 })
 export class FacultiesComponent {

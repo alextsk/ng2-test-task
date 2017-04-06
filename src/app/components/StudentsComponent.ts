@@ -5,8 +5,8 @@ import {DataService} from './get_data.service';
   selector: 'students',
   template: `
   <h1>Students List</h1>
-  
-  <table class="table">
+   <button class="btn btn-success btn-create-student" [routerLink]="['create']"> Create New Student</button>
+  <table class="table table-students">
     <thead>
       <tr>
         <th>Name</th>
@@ -22,11 +22,11 @@ import {DataService} from './get_data.service';
         <td> {{student.sex}} </td>
         <td> {{getFacById(student.facId)}} </td>
         <td> <a [routerLink]="[ student.id ]" > Edit </a> </td>
-        <td> <button (click)= "deleteStudent(student.id)"> delete </button> </td>
+        <td> <button (click)= "deleteStudent(student.id)" class="btn btn-sm btn-danger"> delete </button> </td>
       </tr>
     </tbody>
   </table>
-  <button [routerLink]="['create']"> Create New Student</button>
+  
   `
 })
 export class StudentsComponent {

@@ -1,10 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: block;
+}
+
+.navigation ul {
+	list-style: none;
+	display: flex;
+	justify-content:space-around;
+}
+
+.navigation ul li {
+	display: block;
+	min-width: 200px;
+	text-align: center;
+	font-size: 1.5rem;
+	font-family: sans-serif;
+	background:#ffffff;
+}
+
+.navigation ul li a {
+	display: block;
+	width: 100%;
+	padding: 10px 0;
+	text-decoration: none;
+	color: #400000;
+	box-shadow: 0 0 1px 1px rgba(0,0,34,0.6);
+}
+.navigation ul li a:hover,
+.navigation ul li.active a {
+	background: #fdea02;
+	box-shadow: none;
+}
 
 .table {
 	min-width: 600px;
 	width: 100%;
 }
+.table td {
+	height: 30px;
+}
+.table tr:nth-of-type(2n-1) td {
+	background-color: rgba(200,200,223,0.7);
+}
 
-.table  td{
+.btn {
+	padding: 10px 20px;
+	background: #dadada;
+	border: none;
+	box-shadow: 0 0 1px 1px rgba(0,0,34,0.3);
+}
+.btn-danger {
+	background: #d00d0d;
+	color:#ffffff;
+}
+.btn-sm {
+	padding: 5px 10px;
+}
+.btn:hover{
+	box-shadow: none;
+}
+.table td{
 	text-align: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+.form .form-group {
+	padding: 10px;
+	
+}
+.form .form-control input{
+	display: inline-block;		
 }

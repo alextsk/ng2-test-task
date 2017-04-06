@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'academy-root',
+  host:{'class': 'container'},
   template: `
-  <div>
-    <nav>
+  <div >
+    <nav class="navigation">
       <ul>
-        <li><a [routerLink]="['']">Overview</a></li>
-        <li><a [routerLink]="['students']">Students</a></li>
-        <li><a [routerLink]="['faculties']">Faculties</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" >Overview</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['students']" >Students</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['faculties']" >Faculties</a></li>
       </ul>
     </nav>
 

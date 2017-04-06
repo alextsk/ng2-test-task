@@ -6,43 +6,52 @@ import { DataService } from './get_data.service'
 @Component({
   selector: 'student-edit',
   template: `
-    <h1>student id:{{id}}</h1>
+    <h1 *ngIf="id != 'create'">Update Student №{{id}}</h1>
+    <h1 *ngIf="id == 'create'">Create Student</h1>
 
     <form [formGroup]="studentForm" 
           (ngSubmit)="onSubmit()"
           (keypress)="keyPressHandler($event)"
+          class="form"
           >
-    <div>
-      <label> Name
-        <input type="text"
-          placeholder="student name"
-          [formControl]="studentForm.controls['name']" 
-          />
-      </label> 
+      <div class="form-group">
+        <label> Name:
+          <input type="text"
+            placeholder="student name"
+            [formControl]="studentForm.controls['name']" 
+            />
+        </label> 
       </div> 
-      Faculty:
-    <select name="" id="" [formControl]="studentForm.controls['facId']" >
-      <option *ngFor="let faculty of faculties" [value]="faculty.id">{{faculty.name}}</option>
-    </select>
-   <div>
-      <label> Year of birth
-        <input type="text"
-          placeholder="xxxx"
-          [formControl]="studentForm.controls['dob']" 
-          />
-      </label>  
+
+      <div class="form-group">
+        Faculty:
+        <select name="" id="" [formControl]="studentForm.controls['facId']" >
+          <option *ngFor="let faculty of faculties" [value]="faculty.id">{{faculty.name}}</option>
+        </select>
       </div>
-      <div>
-          Sex
-          <label>
-            <input type="radio" name="gender" value="male" [formControl]="studentForm.controls['sex']" [checked]="'male'=== studentForm.controls['sex']"> Male
-          </label>
-          <label>
+      
+      <div class="form-group">
+        <label> Year of birth:
+          <input type="text"
+            placeholder="xxxx"
+            [formControl]="studentForm.controls['dob']" 
+            />
+        </label>  
+      </div>
+
+      <div class="form-group">
+        Sex:
+        <label>
+          <input type="radio" name="gender" value="male" [formControl]="studentForm.controls['sex']" [checked]="'male'=== studentForm.controls['sex']"> Male
+        </label>
+        <label>
           <input type="radio" name="gender" value="female" [formControl]="studentForm.controls['sex']" [checked]="'female'=== studentForm.controls['sex']"> Female
         </label>  
-
       </div>
-      <button *ngIf="studentForm.valid"> Save </button>
+      <div class="form-control">
+        <button *ngIf="studentForm.valid"> Save </button>
+      </div>
+      
     </form>
   `
 })

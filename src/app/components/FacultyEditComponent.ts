@@ -1,26 +1,31 @@
 import { Component, OnInit, OnChanges} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DataService } from './get_data.service'
 
 @Component({
   selector: 'faculty-edit',
   template: `
-    <h1>Faculty id:{{id}}</h1>
+     <h1 *ngIf="id != 'create'">Update Faculty №{{id}}</h1>
+    <h1 *ngIf="id == 'create'">Create Faculty</h1>
 
     <form [formGroup]="facultyForm" 
           (ngSubmit)="onSubmit()"
           (keypress)="keyPressHandler($event)"
+          class="form"
           >
-      <div>
-        <label> Name
+      <div class="form-group">
+        <label> Name: 
           <input type="text"
             placeholder="faculty name"
             [formControl]="facultyForm.controls['name']" 
             />
         </label> 
       </div> 
-      <button> Save </button>
+      <div class="form-group" *ngIf="facultyForm.valid">
+        <button class="btn"> Save </button>
+      </div>
+      
     </form>
   `
 })
@@ -41,7 +46,7 @@ export class FacultyEditComponent implements OnInit {
       this.faculties = this.data.getFacultiesList();
       let faculty = this.data.getFaculty(this.id);
       this.facultyForm = this.fb.group({
-        'name': [faculty && faculty.name || ''],
+        'name': [faculty && faculty.name || '', Validators.required],
       })
     });
   }
@@ -54,7 +59,7 @@ export class FacultyEditComponent implements OnInit {
 
   onSubmit() {
     console.log('submitting', this.facultyForm.value)
-     if (<string>this.id == 'create') {
+    if (<string>this.id == 'create') {
       this.data.createFaculty(this.facultyForm.value)  
     } else {
       this.data.updateFaculty(this.id, this.facultyForm.value)  

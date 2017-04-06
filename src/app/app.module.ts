@@ -20,7 +20,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {DataService} from './components/get_data.service';
 
 const routes: Routes = [
-  { path: '', component: OverviewComponent },
+  { path: '', component: OverviewComponent, pathMatch: 'full' },
   { path: 'students', component: StudentsComponent },
   { path: 'students/:id', component: StudentEditComponent },
   { path: 'faculties', component: FacultiesComponent },
