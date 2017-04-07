@@ -4,7 +4,9 @@ import {DataService} from './get_data.service';
 @Component({
   selector: 'faculties',
   template: `
-    <h1>Faculties List</h1>
+    <h1>Faculties</h1>
+    <button class="btn btn-success"[routerLink]="['create']">Create New Faculty</button>
+    <hr />
     <table class="table">
       <thead>
       <tr>
@@ -26,7 +28,7 @@ import {DataService} from './get_data.service';
           <td> {{countStudentsByFac(faculty.id, "female")}} </td>
           <td> {{avgAge(faculty.id)}} </td>
           <td>
-            <a [routerLink]="faculty.id" >edit</a></td>
+            <a [routerLink]="faculty.id" class="btn btn-sm"> Edit</a></td>
             <td>
             <button *ngIf="!countStudentsByFac(faculty.id)" 
                     (click)="deleteFaculty(faculty.id)"
@@ -38,7 +40,7 @@ import {DataService} from './get_data.service';
       </tbody>
     </table>
 
-    <button class="btn btn-success"[routerLink]="['create']"> Create New Faculty</button>
+    
   `
 })
 export class FacultiesComponent {
@@ -48,11 +50,12 @@ export class FacultiesComponent {
 
   constructor(private data: DataService) {
     this.faculties = this.data.getFacultiesList();
-    this.students= this.data.getStudentsList();
+    this.students = this.data.getStudentsList();
   }
 
   countStudentsByFac(facId : number, sex:  string = null) {
     let studentsTotal = this.students.filter( stu => (stu.facId == facId));
+    
     return sex ? studentsTotal.filter(s => s.sex == sex).length : studentsTotal.length;
   }
 
@@ -61,9 +64,10 @@ export class FacultiesComponent {
     let students = this.students
       .filter( stu => (stu.facId == facId));
     let average = students.reduce((acc, stu) => acc + (currentYear - stu.dob), 0) / (students.length || 1) ;
-    return average.toFixed(2);
     
+    return average.toFixed(2);
   }
+
   deleteFaculty(id) {
     this.data.deleteFaculty(id);
   }

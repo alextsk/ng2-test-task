@@ -4,8 +4,9 @@ import {DataService} from './get_data.service';
 @Component({
   selector: 'students',
   template: `
-  <h1>Students List</h1>
+  <h1>Students</h1>
    <button class="btn btn-success btn-create-student" [routerLink]="['create']"> Create New Student</button>
+   <hr />
   <table class="table table-students">
     <thead>
       <tr>
@@ -21,7 +22,7 @@ import {DataService} from './get_data.service';
         <td> {{student.dob}} </td>
         <td> {{student.sex}} </td>
         <td> {{getFacById(student.facId)}} </td>
-        <td> <a [routerLink]="[ student.id ]" > Edit </a> </td>
+        <td> <a [routerLink]="[ student.id ]" class="btn btn-sm"> Edit </a> </td>
         <td> <button (click)= "deleteStudent(student.id)" class="btn btn-sm btn-danger"> delete </button> </td>
       </tr>
     </tbody>

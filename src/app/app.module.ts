@@ -44,8 +44,10 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ DataService,
-  { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [ 
+    DataService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AcademyAppComponent]
 })
 export class AppModule { }

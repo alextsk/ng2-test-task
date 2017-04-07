@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DataService } from './get_data.service'
 
@@ -12,15 +12,15 @@ import { DataService } from './get_data.service'
     <form [formGroup]="facultyForm" 
           (ngSubmit)="onSubmit()"
           (keypress)="keyPressHandler($event)"
-          class="form"
+          class="form "
           >
       <div class="form-group">
-        <label> Name: 
-          <input type="text"
-            placeholder="faculty name"
-            [formControl]="facultyForm.controls['name']" 
-            />
-        </label> 
+        <label> Name: </label> 
+        <input type="text"
+          placeholder="faculty name"
+          [formControl]="facultyForm.controls['name']" 
+          class="form-control"
+          />
       </div> 
       <div class="form-group" *ngIf="facultyForm.valid">
         <button class="btn"> Save </button>
@@ -37,7 +37,8 @@ export class FacultyEditComponent implements OnInit {
   constructor (
     private route: ActivatedRoute, 
     private fb: FormBuilder,
-    private data: DataService
+    private data: DataService,
+    private router :Router
   ) { }
 
   ngOnInit() {
@@ -64,5 +65,6 @@ export class FacultyEditComponent implements OnInit {
     } else {
       this.data.updateFaculty(this.id, this.facultyForm.value)  
     }
+    this.router.navigate(['faculties'])
   }
 }

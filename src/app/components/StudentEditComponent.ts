@@ -1,5 +1,5 @@
 import {Component, OnInit, OnChanges} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DataService } from './get_data.service'
 
@@ -12,44 +12,46 @@ import { DataService } from './get_data.service'
     <form [formGroup]="studentForm" 
           (ngSubmit)="onSubmit()"
           (keypress)="keyPressHandler($event)"
-          class="form"
+          class="form form__student-create"
           >
-      <div class="form-group">
-        <label> Name:
+      <div class="form-group ">
+        <label> Name: </label> 
           <input type="text"
             placeholder="student name"
             [formControl]="studentForm.controls['name']" 
+            class="form-control "
             />
-        </label> 
+    
       </div> 
 
-      <div class="form-group">
-        Faculty:
-        <select name="" id="" [formControl]="studentForm.controls['facId']" >
+      <div class="form-group ">
+        <label for="">Faculty:</label>
+        <select name="" id="" [formControl]="studentForm.controls['facId']" class="form-control">
           <option *ngFor="let faculty of faculties" [value]="faculty.id">{{faculty.name}}</option>
         </select>
       </div>
       
-      <div class="form-group">
-        <label> Year of birth:
+      <div class="form-group optional">
+        <label> Year of birth:</label>  
           <input type="text"
             placeholder="xxxx"
             [formControl]="studentForm.controls['dob']" 
+            class="form-control"
             />
-        </label>  
       </div>
 
-      <div class="form-group">
-        Sex:
+      <div class="form-group optional">
+        <label for="">Sex: </label>
+        <div class="form-control">
         <label>
           <input type="radio" name="gender" value="male" [formControl]="studentForm.controls['sex']" [checked]="'male'=== studentForm.controls['sex']"> Male
         </label>
         <label>
           <input type="radio" name="gender" value="female" [formControl]="studentForm.controls['sex']" [checked]="'female'=== studentForm.controls['sex']"> Female
-        </label>  
+        </label>  </div>
       </div>
       <div class="form-control">
-        <button *ngIf="studentForm.valid"> Save </button>
+        <button *ngIf="studentForm.valid" class="btn"> Save </button>
       </div>
       
     </form>
@@ -63,7 +65,8 @@ export class StudentEditComponent  {
   constructor (
     private route: ActivatedRoute, 
     private fb: FormBuilder,
-    private data: DataService
+    private data: DataService,
+    private router :Router
   ) {
       this.route.params.subscribe(params => { 
       this.id = params['id']; 
@@ -91,6 +94,6 @@ export class StudentEditComponent  {
     } else {
       this.data.updateStudent(this.id, this.studentForm.value)  
     }
-    
+    this.router.navigate(['students'])
   }
 }

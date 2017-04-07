@@ -24,22 +24,7 @@ export class DataService {
   getStudent(id: number) {
   	return this.app.students.find(stu => stu.id == id)
   }  
-
-  getFaculty(id: number) {
-  	return this.app.faculties.find(fac => fac.id == id)
-  }
-  
-  createFaculty(faculty) {
-  	let newId = this.app.faculties[this.app.faculties.length - 1].id + 1
-  	faculty.id = newId;
-  	this.app.faculties.push(faculty);
-  }
-
-  updateFaculty(id, faculty) {
-  	let index = this.app.faculties.findIndex(fac => fac.id == id)
-  	this.app.faculties[index].name = faculty.name;
-  }
-
+ 
 	updateStudent(id, student) {
   	let index = this.app.students.findIndex(stu => stu.id == id)
   	this.app.students[index] = student;
@@ -63,6 +48,23 @@ export class DataService {
 	getStudentsTotal() {
 		return this.app.students.length;	
 	}
+
+
+
+  getFaculty(id: number) {
+    return this.app.faculties.find(fac => fac.id == id)
+  }
+  
+  createFaculty(faculty) {
+    let newId = this.app.faculties[this.app.faculties.length - 1].id + 1
+    faculty.id = newId;
+    this.app.faculties.push(faculty);
+  }
+
+  updateFaculty(id, faculty) {
+    let index = this.app.faculties.findIndex(fac => fac.id == id)
+    this.app.faculties[index].name = faculty.name;
+  }
 
 	getFacultiesTotal() {
 		return this.app.faculties.length;	

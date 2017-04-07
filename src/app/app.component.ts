@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
     <nav class="navigation">
       <ul>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" >Overview</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['students']" >Students</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['faculties']" >Faculties</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['students']" >Students</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['faculties']" >Faculties</a></li>
       </ul>
     </nav>
 

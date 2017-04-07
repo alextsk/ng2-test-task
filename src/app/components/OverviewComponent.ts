@@ -6,8 +6,8 @@ import {DataService} from './get_data.service';
   selector: 'overview',
   template: `
   	<h1>Overview</h1>
-  	<div>Total students: {{students}}</div>
-  	<div>Total faculties: {{faculties}}</div>
+  	<div class="card">Total students: <span class="badge">{{students}}</span></div>
+  	<div class="card">Total faculties: <span class="badge">{{faculties}}</span></div>
 	`
 })
 export class OverviewComponent {
